@@ -163,17 +163,15 @@
           .attr("transform", "translate(0," + height + ")")
           .call(d3.axisBottom(xScale))
           .selectAll("text")
-          .attr("class", "x-axis-text");
+          .attr("class", "x-axis-text")
+          .attr("dx", "-0.8em")
+          .attr("dy", "0.15em")
+          .style("transform", "rotate(-65deg)")
+          .style("text-anchor", "end");
       // Remove x-axis domain
       // g.select(".x-axis")
       //     .selectAll(".domain")
       //     .remove();
-      // Draw x-axis label
-      g.select(".x-axis")
-          .append("text")
-          .attr("x", width - "50" + "px")
-          .attr("y", "40px")
-          .text("2017/08/13 Site of the year");
       // Draw y-axis
       g.append("g")
           .attr("class", "axis y-axis")
@@ -186,6 +184,11 @@
           .attr("transform", "rotate(-90)")
           .attr("y", -70)
           .text("Percentage (%)");
+      g.select(".y-axis")
+          .append("text")
+          .attr("x", "45px")
+          .attr("y", -(margin.top / 2))
+          .text("2017/08/13 Site of the year");
       // Draw trendline
       g.append("path")
           .datum(data)
