@@ -117,24 +117,42 @@
           .duration(50)
           .style("top", y + margin.top + tipMargin.top + "px")
           .style("left", x + margin.left + tipMargin.left + "px");
-      d3.select("#tipTriangle")
-          .style("transform", "rotate(45deg)")
-          .transition()
-          .duration(50)
-          .style("bottom", "-35px")
-          .style("left", "-15px");
+      if (isMobile) {
+        d3.select("#tipTriangle")
+            .style("transform", "rotate(45deg)")
+            .transition()
+            .duration(50)
+            .style("bottom", "-33px")
+            .style("left", "-8px");
+      } else {
+        d3.select("#tipTriangle")
+            .style("transform", "rotate(45deg)")
+            .transition()
+            .duration(50)
+            .style("bottom", "-35px")
+            .style("left", "-15px");
+      }
     } else {
       d3.select("#tooltip")
           .transition()
           .duration(50)
           .style("top", y + margin.top + tipMargin.top + "px")
           .style("left", x - margin.left + "px");
-      d3.select("#tipTriangle")
-          .style("transform", "rotate(-45deg)")
-          .transition()
-          .duration(50)
-          .style("bottom", "-35px")
-          .style("left", "173px");
+      if (isMobile) {
+        d3.select("#tipTriangle")
+            .style("transform", "rotate(-45deg)")
+            .transition()
+            .duration(50)
+            .style("bottom", "-35px")
+            .style("left", "175px");
+      } else {
+        d3.select("#tipTriangle")
+            .style("transform", "rotate(-45deg)")
+            .transition()
+            .duration(50)
+            .style("bottom", "-35px")
+            .style("left", "173px");
+      }
     }
     d3.select("#percentage")
         .text(data[idx].percentage.toFixed(11));
@@ -306,7 +324,7 @@
           .transition()
           .duration(50)
           .style("bottom", "-33px")
-          .style("left", "-10px");
+          .style("left", "-8px");
     } else {
       d3.select("#tipTriangle")
           .style("transform", "rotate(45deg)")
