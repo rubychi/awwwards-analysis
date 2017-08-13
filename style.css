@@ -1,0 +1,74 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  left: 50px;
+  padding-right: 10px;
+}
+
+.btn {
+  top: 20px;
+  right: 20px;
+}
+
+#chart {
+  position: absolute;
+  width: 100%;
+  height: 90%;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #95acb5;
+}
+
+.axis text {
+  fill: grey;
+}
+
+.trendline {
+  fill: none;
+  stroke: #0f747f;
+  stroke-width: 1px;
+}
+
+.circle {
+  fill: white;
+  stroke: #0f747f;
+}
+
+.guideline {
+  fill: black;
+  stroke: #0f747f;
+  stroke-width: 1px;
+  stroke-dasharray: 3,3;
+  opacity: 0.5;
+}
+
+.tip {
+  position: absolute;
+  width: 190px;
+  height: 90px;
+  font-size: 12px;
+  line-height: 2;
+  color: white;
+  background-color: #0f747f;
+  border-radius: 6px;
+  padding: 10px;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.tip-triangle {
+  position: absolute;
+  font-size: 36px;
+  color: #0f747f;
+  left: -15px;
+  bottom: -35px;
+  transform: rotate(45deg);
+  z-index: 1;
+}

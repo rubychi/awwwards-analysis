@@ -1,0 +1,18 @@
+{
+  "name": "awwwards-analysis",
+  "version": "1.0.0",
+  "description": "How big is this industry for each country?",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "cheerio": "^1.0.0-rc.2"
+  }
+}
