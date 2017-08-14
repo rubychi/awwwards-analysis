@@ -44,7 +44,7 @@
   var sort = null;
   var update = null;
   function navClickHandler(e) {
-    curKey = e.target.innerHtml.toLowerCase();
+    curKey = $(e.target).text().toLowerCase();
     console.log('curKey', curKey);
     update(data[curKey], false);
   }
