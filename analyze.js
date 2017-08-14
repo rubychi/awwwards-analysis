@@ -105,7 +105,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
     tipTriangleLeft.bottom = "-33px";
     tipTriangleLeft.left = "-5px";
     tipTriangleRight.bottom = "-33px";
-    tipTriangleRight.left = "175px";
+    tipTriangleRight.left = "176px";
   } else {
     tipMargin.top = -60;
     tipMargin.left = 10;
