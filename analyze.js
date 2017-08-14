@@ -77,6 +77,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
   }
   // Remove " (Taipei Standard Time)" from "Mon Aug 14 2017 16:35:04 GMT+0800 (Taipei Standard Time)"
   timestamp = time[0].Timestamp.replace(/\s\(.+\)/, "") + ', ';
+  // Construct data
   data["nominees"] = nominees.map(parseData);
   data["honorable mention"] = honorable.map(parseData);
   data["developer award"] = developer.map(parseData);
@@ -94,18 +95,20 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
         bottom: 140,
         left: 100,
       };
-  var tipMargin = {
-    top: -60,
-    left: 10,
-  };
+  // Set up tip
+  var tipMargin = {};
   var tipTriangleLeft = {};
   var tipTriangleRight = {};
   if (isMobileOrTablet) {
+    tipMargin.top = -65;
+    tipMargin.left = 15;
     tipTriangleLeft.bottom = "-33px";
     tipTriangleLeft.left = "-7px";
     tipTriangleRight.bottom = "-34px";
     tipTriangleRight.left = "178px";
   } else {
+    tipMargin.top = -60;
+    tipMargin.left = 10;
     tipTriangleLeft.bottom = "-35px";
     tipTriangleLeft.left = "-15px";
     tipTriangleRight.bottom = "-35px";
