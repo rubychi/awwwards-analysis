@@ -3,7 +3,7 @@ var sort = null;
 var data = {};
 var curKey = "";
 var curOrder = "country";
-var timestampLabel = null;
+var timestamp = null;
 var prevNav = $("#nav-mobile").children().first();
 function sortBtnClickHandler() {
   if (!$.isEmptyObject(data)) {
