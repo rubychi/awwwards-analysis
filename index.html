@@ -62,11 +62,11 @@
       };
     }
     data['nominees'] = nominees.map(parseData);
-    data['honorable'] = honorable.map(parseData);
-    data['developer'] = developer.map(parseData);
-    data['sotd'] = sotd.map(parseData);
-    data['sotm'] = sotm.map(parseData);
-    data['soty'] = soty.map(parseData);
+    data['honorable mention'] = honorable.map(parseData);
+    data['developer award'] = developer.map(parseData);
+    data['site of the day'] = sotd.map(parseData);
+    data['site of the month'] = sotm.map(parseData);
+    data['site of the year'] = soty.map(parseData);
     curKey = 'nominees';
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
