@@ -15,12 +15,12 @@
    <div class="nav-wrapper">
      <a href="#" class="brand-logo logo">Awwwards Analysis</a>
      <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a onclick="navClickHandler()">NOMINEES</a></li>
-       <li><a onclick="navClickHandler()">HONORABLE MENTION</a></li>
-       <li><a onclick="navClickHandler()">DEVELOPER AWARD</a></li>
-       <li><a onclick="navClickHandler()">SITE OF THE DAY</a></li>
-       <li><a onclick="navClickHandler()">SITE OF THE MONTH</a></li>
-       <li><a onclick="navClickHandler()">SITE OF THE YEAR</a></li>
+       <li><a onclick="navClickHandler(this);">NOMINEES</a></li>
+       <li><a onclick="navClickHandler(this);">HONORABLE MENTION</a></li>
+       <li><a onclick="navClickHandler(this);">DEVELOPER AWARD</a></li>
+       <li><a onclick="navClickHandler(this);">SITE OF THE DAY</a></li>
+       <li><a onclick="navClickHandler(this);">SITE OF THE MONTH</a></li>
+       <li><a onclick="navClickHandler(this);">SITE OF THE YEAR</a></li>
      </ul>
    </div>
   </nav>
@@ -43,8 +43,8 @@
   var curKey = '';
   var sort = null;
   var update = null;
-  function navClickHandler() {
-    curKey = $(this).text().toLowerCase();
+  function navClickHandler(e) {
+    curKey = e.target.innerHtml.toLowerCase();
     console.log('curKey', curKey);
     update(data[curKey], false);
   }
