@@ -220,7 +220,7 @@ $.ajax({
             .style("text-anchor", "end")
             .attr("y", "-35")
             .attr("dx", "170")
-            .text(timestamp + ", " + capitalizeFirstLetter(curKey));
+            .text(timestamp + capitalizeFirstLetter(curKey));
         // Draw trendline
         g.append("path")
             .datum(data)
