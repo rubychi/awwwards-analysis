@@ -9,11 +9,7 @@ gulp.task('delDistFolder', function() {
   return del('./docs');
 });
 
-gulp.task('setProdNodeEnv', ['delDistFolder'], function() {
-    return process.env.NODE_ENV = 'production';
-});
-
-gulp.task('useminTrigger', ['setProdNodeEnv'], function() {
+gulp.task('useminTrigger', ['delDistFolder'], function() {
   gulp.start('usemin');
 });
 
@@ -29,10 +25,11 @@ gulp.task('usemin', ['styles', 'scripts'], function() {
 
 gulp.task('copyGeneralFiles', ['crawl'], function() {
   var pathsToCopy = [
-    './temp/data/*',
+    './assets/libs/**/*.{woff,woff2}',
+    './temp/**/*.csv',
   ];
   return gulp.src(pathsToCopy)
-    .pipe(gulp.dest('./docs/data'));
+    .pipe(gulp.dest('./docs'));
 });
 
 gulp.task('clearTemp', ['copyGeneralFiles'], function() {

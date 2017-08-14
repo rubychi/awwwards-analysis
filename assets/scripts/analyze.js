@@ -15,13 +15,13 @@ if (isMobileOrTablet) {
 
 // Read data
 d3.queue()
-  .defer(d3.csv, "./data/timestamp.csv")
-  .defer(d3.csv, "./data/result (nominees).csv")
-  .defer(d3.csv, "./data/result (honorable).csv")
-  .defer(d3.csv, "./data/result (developer).csv")
-  .defer(d3.csv, "./data/result (sites_of_the_day).csv")
-  .defer(d3.csv, "./data/result (sites_of_the_month).csv")
-  .defer(d3.csv, "./data/result (sites_of_the_year).csv")
+  .defer(d3.csv, "./awwwards-analysis/data/timestamp.csv")
+  .defer(d3.csv, "./awwwards-analysis/data/result (nominees).csv")
+  .defer(d3.csv, "./awwwards-analysis/data/result (honorable).csv")
+  .defer(d3.csv, "./awwwards-analysis/data/result (developer).csv")
+  .defer(d3.csv, "./awwwards-analysis/data/result (sites_of_the_day).csv")
+  .defer(d3.csv, "./awwwards-analysis/data/result (sites_of_the_month).csv")
+  .defer(d3.csv, "./awwwards-analysis/data/result (sites_of_the_year).csv")
   .await(analyze);
 
 $(document).ready(function() {

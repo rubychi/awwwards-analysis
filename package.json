@@ -1,7 +1,7 @@
 {
   "name": "awwwards-analysis",
   "version": "1.0.0",
-  "description": "How big is this industry for each country?",
+  "description": "",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
