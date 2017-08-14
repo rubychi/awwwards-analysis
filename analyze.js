@@ -291,6 +291,7 @@ $.ajax({
         g.selectAll(".x-axis")
             .transition()
             .duration(500)
+            .attr("transform", "translate(0," + height + ")")
             .call(d3.axisBottom(xScale))
             .selectAll("text")
             .attr("class", "x-axis-text")
@@ -344,13 +345,17 @@ $.ajax({
           .text(numberWithCommas(data[0].population));
     }
     // Set up svg
-    var svg = d3.select("svg"),
-        margin = {
+    var svg = d3.select("svg");
+    var margin = {
           top: 80,
           right: 80,
           bottom: 135,
           left: 100,
         };
+    var tipMargin = {
+      top: -60,
+      left: 10,
+    };
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     // Set up gradient color
@@ -370,10 +375,6 @@ $.ajax({
         .attr("offset", "100%")
         .attr("stop-color", "rgb(206,254,226)")
         .attr("stop-opacity", 1);
-    var tipMargin = {
-      top: -60,
-      left: 10,
-    };
     update(data[curKey], true);
   }
   // Read data
