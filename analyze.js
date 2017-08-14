@@ -187,9 +187,9 @@ $.ajax({
         g.select(".y-axis")
             .append("text")
             .attr("id", "timestamp")
-            .attr("x", "45px")
+            .attr("x", "120px")
             .attr("y", -(margin.top / 2))
-            .text(timestamp + " Nominees");
+            .text(timestamp + ", Nominees");
         // Draw trendline
         g.append("path")
             .datum(data)
