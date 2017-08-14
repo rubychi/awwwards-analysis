@@ -43,7 +43,6 @@
   const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month', 'sites_of_the_year', 'developer'];
   PATHS.forEach(function(path) {
     d3.csv('./data/result (' + path + ').csv', function(d) {
-      console.log(d);
       return {
         country: d.Country,
         percentage: +d.Percentage,
@@ -54,6 +53,7 @@
       data[path] = data;
     })
   });
+  console.log(data);
 
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

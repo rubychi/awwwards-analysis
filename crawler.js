@@ -78,7 +78,7 @@ function cnvCtryName(name) {
       }));
 
       // Write result to csv files
-      let csv = `${new Date()}\n`;
+      // let csv = `${new Date()}\n`;
       csv += 'Country,Percentage,Submission,Population\n';
       let sortedResult = result.sort((a, b) => b.percentage - a.percentage);
       sortedResult.forEach((item, i) => {
