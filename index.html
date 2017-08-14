@@ -43,11 +43,10 @@
   var curKey = '';
   var sort = null;
   var order = "percentage";
-  var update = null;
   function navClickHandler(e) {
     curKey = e.innerText.toLowerCase();
     order = "percentage";
-    update(data[curKey], false);
+    sort(data[curKey]);
   }
   function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
@@ -166,7 +165,7 @@
           .text(numberWithCommas(data[idx].population));
       prevIdx = idx;
     }
-    update = function(data, initialize) {
+    function update(data, initialize) {
       var xScale = d3.scalePoint().domain(data.map(function(d) { return d.country; })).range([0, width]);
       var yScale = d3.scaleLinear().domain(d3.extent(data, function(d) { return d.percentage; })).range([height, 0]);
       // Used for mapping x coordinate to ordinal data
@@ -291,8 +290,6 @@
             .filter(function(d, i) { return i === 0 })
             .style("fill", "#0f747f")
             .attr("r", 5);
-        // g.selectAll(".x-axis-text")
-        //   .remove();
         g.selectAll(".x-axis")
             .transition()
             .duration(500)
@@ -305,17 +302,6 @@
             .style("text-anchor", "end");
             // .selectAll(".domain")
             // .remove();
-        // // Exit x-axis texts
-        // g.selectAll(".x-axis-text")
-        //   .exit()
-        //   .remove();
-        // // Enter x-axis texts
-        // g.selectAll(".x-axis-text")
-        //   .enter()
-        //     .attr("dx", "-0.8em")
-        //     .attr("dy", "0.15em")
-        //     .style("transform", "rotate(-65deg)")
-        //     .style("text-anchor", "end");
         // Update x-axis texts
         g.selectAll(".x-axis-text")
             .style("font-size", "10px")
