@@ -45,7 +45,7 @@ $.ajax({
         population: +d.Population,
       };
     }
-    timestamp = time.Timestamp + ', ';
+    timestamp = time[0].Timestamp + ', ';
     data["nominees"] = nominees.map(parseData);
     data["honorable mention"] = honorable.map(parseData);
     data["developer award"] = developer.map(parseData);
