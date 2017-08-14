@@ -349,7 +349,7 @@ $.ajax({
     var margin = {
           top: 80,
           right: 80,
-          bottom: 135,
+          bottom: 140,
           left: 100,
         };
     var tipMargin = {
