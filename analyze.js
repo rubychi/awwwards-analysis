@@ -215,7 +215,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
           .attr("id", "timestamp")
           .style("text-anchor", "end")
           .attr("y", "-35")
-          .attr("dx", "170")
+          .attr("dx", "290")
           .text(timestamp + capitalizeFirstLetter(curKey));
       // Draw trendline
       g.append("path")
