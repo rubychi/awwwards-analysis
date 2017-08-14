@@ -1,6 +1,6 @@
 var capitalizeFirstLetter = null;
 var sort = null;
-var data = data;
+var data = {};
 var curKey = "";
 var curOrder = "country";
 var timestamp = null;
