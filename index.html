@@ -15,12 +15,12 @@
    <div class="nav-wrapper">
      <a href="#" class="brand-logo logo">Awwwards Analysis</a>
      <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a>NOMINEES</a></li>
-       <li><a>HONORABLE MENTION</a></li>
-       <li><a>DEVELOPER AWARD</a></li>
-       <li><a>SITE OF THE DAY</a></li>
-       <li><a>SITE OF THE MONTH</a></li>
-       <li><a>SITE OF THE YEAR</a></li>
+       <li><a onclick="navClickHandler()">NOMINEES</a></li>
+       <li><a onclick="navClickHandler()">HONORABLE MENTION</a></li>
+       <li><a onclick="navClickHandler()">DEVELOPER AWARD</a></li>
+       <li><a onclick="navClickHandler()">SITE OF THE DAY</a></li>
+       <li><a onclick="navClickHandler()">SITE OF THE MONTH</a></li>
+       <li><a onclick="navClickHandler()">SITE OF THE YEAR</a></li>
      </ul>
    </div>
   </nav>
@@ -42,6 +42,11 @@
   var data = {};
   var curKey = '';
   var sort = null;
+  var update = null;
+  function navClickHandler() {
+    curKey = $(this).text().toLowerCase();
+    update(data[curKey], false);
+  }
   function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
       console.log(error);
@@ -160,7 +165,7 @@
           .text(numberWithCommas(data[idx].population));
       prevIdx = idx;
     }
-    function update(data, initialize) {
+    update = function(data, initialize) {
       var xScale = d3.scalePoint().domain(data.map(function(d) { return d.country; })).range([0, width]);
       var yScale = d3.scaleLinear().domain(d3.extent(data, function(d) { return d.percentage; })).range([height, 0]);
       // Used for mapping x coordinate to ordinal data
