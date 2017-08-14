@@ -45,6 +45,7 @@
   var update = null;
   function navClickHandler() {
     curKey = $(this).text().toLowerCase();
+    console.log('curKey', curKey);
     update(data[curKey], false);
   }
   function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
