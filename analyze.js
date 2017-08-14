@@ -1,6 +1,6 @@
 var capitalizeFirstLetter = null;
 var sort = null;
-var data = {};
+var data = data;
 var curKey = "";
 var curOrder = "country";
 var timestamp = null;
@@ -201,13 +201,12 @@ $.ajax({
         g.select(".y-axis")
             .append("text")
             .attr("transform", "rotate(-90)")
-            .attr("y", -70)
+            .style("text-anchor", "end")
             .text("Percentage (%)");
         g.select(".y-axis")
             .append("text")
             .attr("id", "timestamp")
-            .attr("x", "120px")
-            .attr("y", -(margin.top / 2))
+            .style("text-anchor", "end")
             .text(timestamp + ", " + capitalizeFirstLetter(curKey));
         // Draw trendline
         g.append("path")
