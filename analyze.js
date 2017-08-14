@@ -55,7 +55,7 @@ $.ajax({
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    capitalizeFirstLetter = function(string) {
+    capitalizeFirstLetter = function(str) {
       return str.replace(/\w\S*/g, function(text) { return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();});
     }
     sort = function(data, order) {
