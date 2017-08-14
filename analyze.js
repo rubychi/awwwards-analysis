@@ -1,16 +1,29 @@
-var timestamp = null;
+var capitalizeFirstLetter = null;
+var sort = null;
 var data = {};
 var curKey = '';
-var sort = null;
 var curOrder = "country";
+var timestamp = null;
+var prevNav = null;
 function sortBtnClickHandler() {
-  curOrder === 'percentage' ? curOrder = 'country' : curOrder = 'percentage';
-  sort(data[curKey], curOrder);
+  if (data.length) {
+    curOrder === 'percentage' ? curOrder = 'country' : curOrder = 'percentage';
+    sort(data[curKey], curOrder);
+  }
 }
 function navClickHandler(e) {
-  curKey = e.innerText.toLowerCase();
-  curOrder = "country";
-  sort(data[curKey], "country");
+  if (data.length) {
+    if (prevNav) {
+      prevNav.removeClass("active");
+    }
+    var nav = $(e).parent();
+    nav.addClass("active");
+    prevNav = nav;
+    curKey = e.innerText.toLowerCase();
+    curOrder = "country";
+    sort(data[curKey], "country");
+    $('#timestamp').text(timestamp + ', ' + capitalizeFirstLetter(curKey));
+  }
 }
 $.ajax({
   url: "/awwwards-analysis/data/result (nominees).csv",
@@ -38,6 +51,9 @@ $.ajax({
     curKey = 'nominees';
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    capitalizeFirstLetter = function(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
     }
     sort = function(data, order) {
       if (order === "country") {
@@ -189,7 +205,7 @@ $.ajax({
             .attr("id", "timestamp")
             .attr("x", "120px")
             .attr("y", -(margin.top / 2))
-            .text(timestamp + ", Nominees");
+            .text(timestamp + ", " + capitalizeFirstLetter(curKey));
         // Draw trendline
         g.append("path")
             .datum(data)
