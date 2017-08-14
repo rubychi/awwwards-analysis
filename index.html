@@ -39,6 +39,12 @@
   <script src="./libs/js/d3.min.js"></script>
   <script src="./libs/js/materialize.min.js"></script>
   <script>
+  var xhr = $.ajax({
+    url: "./data/result%20(developer).csv",
+    success: function(response) {
+        console.log("Data is " + response.data + ", last modified: " + xhr.getResponseHeader("Last-Modified"));
+    }
+  });
   var data = {};
   var curKey = '';
   var sort = null;
