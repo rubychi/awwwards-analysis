@@ -4,7 +4,7 @@ var data = {};
 var curKey = "";
 var curOrder = "country";
 var timestamp = null;
-var prevNav = null;
+var prevNav = $("#nav-mobile").children().first();
 function sortBtnClickHandler() {
   if (!$.isEmptyObject(data)) {
     curOrder === "percentage" ? curOrder = "country" : curOrder = "percentage";
