@@ -39,10 +39,11 @@
   <script src="./libs/js/d3.min.js"></script>
   <script src="./libs/js/materialize.min.js"></script>
   <script>
-  var xhr = $.ajax({
-    url: "/awwwards-analysis/data/result%20(developer).csv",
+  var timestamp = null;
+  $.ajax({
+    url: "/awwwards-analysis/data/result (nominees).csv",
     success: function(response) {
-        console.log("Data is " + response.data + ", last modified: " + xhr.getResponseHeader("Last-Modified"));
+      timestamp = xhr.getResponseHeader("Last-Modified");
     }
   });
   var data = {};
@@ -227,9 +228,10 @@
             .text("Percentage (%)");
         g.select(".y-axis")
             .append("text")
+            .attr("id", "timestamp")
             .attr("x", "45px")
             .attr("y", -(margin.top / 2))
-            .text("2017/08/13 Site of the year");
+            .text(timestamp + " Nominees");
         // Draw trendline
         g.append("path")
             .datum(data)
