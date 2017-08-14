@@ -4,7 +4,7 @@ var data = {};
 var curKey = "";
 var curOrder = "country";
 var timestamp = null;
-var prevNav = $("#nav-mobile").children().first();
+var prevNav = $("#nav").children().first();
 function sortBtnClickHandler() {
   if (!$.isEmptyObject(data)) {
     curOrder === "percentage" ? curOrder = "country" : curOrder = "percentage";
@@ -384,3 +384,7 @@ d3.queue()
   .defer(d3.csv, "./data/result (sites_of_the_month).csv")
   .defer(d3.csv, "./data/result (sites_of_the_year).csv")
   .await(analyze);
+
+$(document).ready(function() {
+  $(".button-collapse").sideNav();
+});
