@@ -156,6 +156,8 @@ $.ajax({
       prevIdx = idx;
     }
     function update(data, initialize) {
+      var width = parseInt(d3.select("#chart").style("width")) - margin.left - margin.right;
+      var height = parseInt(d3.select("#chart").style("height")) - margin.top - margin.bottom;
       var xScale = d3.scalePoint().domain(data.map(function(d) { return d.country; })).range([0, width]);
       var yScale = d3.scaleLinear().domain(d3.extent(data, function(d) { return d.percentage; })).range([height, 0]);
       // Used for mapping x coordinate to ordinal data
@@ -342,9 +344,7 @@ $.ajax({
           right: 80,
           bottom: 135,
           left: 100,
-        },
-        width = parseInt(d3.select("#chart").style("width")) - margin.left - margin.right,
-        height = parseInt(d3.select("#chart").style("height")) - margin.top - margin.bottom;
+        };
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     // Set up gradient color
