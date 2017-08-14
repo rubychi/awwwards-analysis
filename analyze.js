@@ -75,6 +75,10 @@ $.ajax({
       }
       update(data, false);
     }
+    // Add responsive support
+    window.addEventListener("resize", function(event) {
+      update(data, false);
+    });
     var prevIdx = 0;
     function mousemove(el, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx) {
       // Invert x coordinate
@@ -202,7 +206,7 @@ $.ajax({
             .append("text")
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "end")
-            .attr("y", "-60")
+            .attr("y", "-70")
             .text("Percentage (%)");
         g.select(".y-axis")
             .append("text")
@@ -336,7 +340,7 @@ $.ajax({
         margin = {
           top: 80,
           right: 80,
-          bottom: 130,
+          bottom: 135,
           left: 100,
         },
         width = parseInt(d3.select("#chart").style("width")) - margin.left - margin.right,
