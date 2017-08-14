@@ -5,7 +5,13 @@ var curKey = "";
 var curOrder = "country";
 var timestamp = null;
 var isMobileOrTablet = mobileAndTabletcheck();
-var prevNav = isMobileOrTablet ? $("#nav-mobile").children().first() : $("#nav").children().first();
+var prevNav = null;
+if (isMobileOrTablet) {
+  prevNav = $("#nav-mobile").children().first();
+  $("#brand")[0].innerText = "Analysis";
+} else {
+  prevNav = $("#nav").children().first();
+}
 
 // Read data
 d3.queue()
@@ -72,6 +78,55 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
   data["site of the month"] = sotm.map(parseData);
   data["site of the year"] = soty.map(parseData);
   curKey = "nominees";
+  // Set up svg
+  var svg = d3.select("svg");
+  var width = null;
+  var height = null;
+  var margin = {
+        top: 80,
+        right: 80,
+        bottom: 140,
+        left: 100,
+      };
+  var tipMargin = {
+    top: -60,
+    left: 10,
+  };
+  var tipTriangleLeft = {};
+  var tipTriangleRight = {};
+  if (isMobileOrTablet) {
+    tipTriangleLeft.bottom = "-33px";
+    tipTriangleLeft.left = "-7px";
+    tipTriangleRight.bottom = "-34px";
+    tipTriangleRight.left = "178px";
+  } else {
+    tipTriangleLeft.bottom = "-35px";
+    tipTriangleLeft.left = "-15px";
+    tipTriangleRight.bottom = "-35px";
+    tipTriangleRight.left = "173px";
+  }
+  var g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // Set up gradient color
+  var gradient = svg.append("defs")
+      .append("linearGradient")
+      .attr("id", "gradient")
+      .attr("x1", "0%")
+      .attr("y1", "0%")
+      .attr("x2", "0%")
+      .attr("y2", "100%")
+      .attr("spreadMethod", "pad");
+  gradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "rgb(36,175,192)")
+      .attr("stop-opacity", 1);
+  gradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "rgb(206,254,226)")
+      .attr("stop-opacity", 1);
+
+  update(data[curKey], true);
+
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -95,10 +150,6 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
     }
     update(data, false);
   }
-  // Add responsive support
-  // svg width, height
-  var width = null;
-  var height = null;
   window.addEventListener("resize", function(event) {
     update(data[curKey], false);
   });
@@ -153,8 +204,8 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
           .style("transform", "rotate(45deg)")
           .transition()
           .duration(50)
-          .style("bottom", "-35px")
-          .style("left", "-15px");
+          .style("bottom", tipTriangleLeft.bottom)
+          .style("left", tipTriangleLeft.left);
     } else {
       d3.select("#tip")
           .transition()
@@ -165,8 +216,8 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
           .style("transform", "rotate(-45deg)")
           .transition()
           .duration(50)
-          .style("bottom", "-35px")
-          .style("left", "173px");
+          .style("bottom", tipTriangleRight.bottom)
+          .style("left", tipTriangleRight.left);
     }
     d3.select("#country")
         .text(data[idx].country);
@@ -353,8 +404,8 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
         .style("transform", "rotate(45deg)")
         .transition()
         .duration(50)
-        .style("bottom", "-35px")
-        .style("left", "-15px");
+        .style("bottom", tipTriangleLeft.bottom)
+        .style("left", tipTriangleLeft.left);
     d3.select("#country")
         .text(data[0].country);
     d3.select("#percentage")
@@ -364,36 +415,4 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
     d3.select("#population")
         .text(numberWithCommas(data[0].population));
   }
-  // Set up svg
-  var svg = d3.select("svg");
-  var margin = {
-        top: 80,
-        right: 80,
-        bottom: 140,
-        left: 100,
-      };
-  var tipMargin = {
-    top: -60,
-    left: 10,
-  };
-  var g = svg.append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-  // Set up gradient color
-  var gradient = svg.append("defs")
-      .append("linearGradient")
-      .attr("id", "gradient")
-      .attr("x1", "0%")
-      .attr("y1", "0%")
-      .attr("x2", "0%")
-      .attr("y2", "100%")
-      .attr("spreadMethod", "pad");
-  gradient.append("stop")
-      .attr("offset", "0%")
-      .attr("stop-color", "rgb(36,175,192)")
-      .attr("stop-opacity", 1);
-  gradient.append("stop")
-      .attr("offset", "100%")
-      .attr("stop-color", "rgb(206,254,226)")
-      .attr("stop-opacity", 1);
-  update(data[curKey], true);
 }
