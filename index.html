@@ -37,8 +37,24 @@
   <script src="./libs/js/jquery-3.2.1.min.js"></script>
   <script src="./libs/js/d3.min.js"></script>
   <script src="./libs/js/materialize.min.js"></script>
-  <script src="data.js"></script>
   <script>
+  // Read data
+  var data = {};
+  const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month', 'sites_of_the_year', 'developer'];
+  PATHS.forEach(function(path) {
+    d3.csv('./data/result (' + path + ').csv', function(d) {
+      console.log(d);
+      return {
+        country: d.Country,
+        percentage: +d.Percentage,
+        submission: +d.Submission,
+        population: +d.Population,
+      };
+    }, function(data) {
+      data[path] = data;
+    }
+  });
+
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
@@ -342,7 +358,7 @@
     left: 20,
   };
 
-  update(data, true);
+  update(data['nominees'], true);
   </script>
 </body>
 </html>
