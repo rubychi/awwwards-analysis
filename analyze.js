@@ -310,6 +310,8 @@ $.ajax({
             .duration(500)
             .call(d3.axisLeft(yScale));
         g.select(".overlay")
+            .attr("width", width)
+            .attr("height", height)
             .on("mousemove", function () {
               mousemove(this, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx);
             });
