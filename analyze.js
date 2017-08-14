@@ -1,13 +1,13 @@
 var capitalizeFirstLetter = null;
 var sort = null;
 var data = {};
-var curKey = '';
+var curKey = "";
 var curOrder = "country";
 var timestamp = null;
 var prevNav = null;
 function sortBtnClickHandler() {
   if (!$.isEmptyObject(data)) {
-    curOrder === 'percentage' ? curOrder = 'country' : curOrder = 'percentage';
+    curOrder === "percentage" ? curOrder = "country" : curOrder = "percentage";
     sort(data[curKey], curOrder);
   }
 }
@@ -22,7 +22,7 @@ function navClickHandler(e) {
     curKey = e.innerText.toLowerCase();
     curOrder = "country";
     sort(data[curKey], "country");
-    $('#timestamp').text(timestamp + ', ' + capitalizeFirstLetter(curKey));
+    $("#timestamp").text(timestamp + ", " + capitalizeFirstLetter(curKey));
   }
 }
 $.ajax({
@@ -34,6 +34,9 @@ $.ajax({
     if (error) {
       console.log(error);
     }
+    $("#preloader").addClass("hidden");
+    $("#tip").removeClass("hidden");
+    $("#tipTriangle").removeClass("hidden");
     function parseData(d) {
       return {
         country: d.Country,
@@ -42,13 +45,13 @@ $.ajax({
         population: +d.Population,
       };
     }
-    data['nominees'] = nominees.map(parseData);
-    data['honorable mention'] = honorable.map(parseData);
-    data['developer award'] = developer.map(parseData);
-    data['site of the day'] = sotd.map(parseData);
-    data['site of the month'] = sotm.map(parseData);
-    data['site of the year'] = soty.map(parseData);
-    curKey = 'nominees';
+    data["nominees"] = nominees.map(parseData);
+    data["honorable mention"] = honorable.map(parseData);
+    data["developer award"] = developer.map(parseData);
+    data["site of the day"] = sotd.map(parseData);
+    data["site of the month"] = sotm.map(parseData);
+    data["site of the year"] = soty.map(parseData);
+    curKey = "nominees";
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
@@ -79,7 +82,7 @@ $.ajax({
       var x = xScale(country);
       var idx = mapCountryToIdx(country);
       var y = yScale(data[idx].percentage);
-      // Calculating the boundary index to rotate the tooltip
+      // Calculating the boundary index to rotate the tip
       var xAxisInterval = width / data.length;
       let sum = 0, lastIdx = data.length - 1;
       while(sum < 190) {
@@ -114,7 +117,7 @@ $.ajax({
           .duration(50)
           .style("font-size", "12px");
       if (idx <= lastIdx) {
-        d3.select("#tooltip")
+        d3.select("#tip")
             .transition()
             .duration(50)
             .style("top", y + margin.top + tipMargin.top + "px")
@@ -126,7 +129,7 @@ $.ajax({
             .style("bottom", "-35px")
             .style("left", "-15px");
       } else {
-        d3.select("#tooltip")
+        d3.select("#tip")
             .transition()
             .duration(50)
             .style("top", y + margin.top + tipMargin.top + "px")
@@ -172,7 +175,7 @@ $.ajax({
             .data([data])
             .attr("class", "area")
             .attr("d", area)
-            .style('fill', 'url(#gradient)');
+            .style("fill", "url(#gradient)");
         // Draw x-axis
         g.append("g")
             .attr("class", "axis x-axis")
@@ -306,7 +309,7 @@ $.ajax({
           .duration(500)
           .attr("x1", 0)
           .attr("x2", 0);
-      d3.select("#tooltip")
+      d3.select("#tip")
           .transition()
           .duration(500)
           .style("top", yScale(data[0].percentage) + margin.top + tipMargin.top + "px")
@@ -339,22 +342,22 @@ $.ajax({
     var g = svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     // Set up gradient color
-    var gradient = svg.append('defs')
-        .append('linearGradient')
-        .attr('id', 'gradient')
-        .attr('x1', '0%')
-        .attr('y1', '0%')
-        .attr('x2', '0%')
-        .attr('y2', '100%')
-        .attr('spreadMethod', 'pad');
-    gradient.append('stop')
-        .attr('offset', '0%')
-        .attr('stop-color', 'rgb(36,175,192)')
-        .attr('stop-opacity', 1);
-    gradient.append('stop')
-        .attr('offset', '100%')
-        .attr('stop-color', 'rgb(206,254,226)')
-        .attr('stop-opacity', 1);
+    var gradient = svg.append("defs")
+        .append("linearGradient")
+        .attr("id", "gradient")
+        .attr("x1", "0%")
+        .attr("y1", "0%")
+        .attr("x2", "0%")
+        .attr("y2", "100%")
+        .attr("spreadMethod", "pad");
+    gradient.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", "rgb(36,175,192)")
+        .attr("stop-opacity", 1);
+    gradient.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", "rgb(206,254,226)")
+        .attr("stop-opacity", 1);
     var tipMargin = {
       top: -60,
       left: 10,
@@ -363,11 +366,11 @@ $.ajax({
   }
   // Read data
   d3.queue()
-    .defer(d3.csv, './data/result (nominees).csv')
-    .defer(d3.csv, './data/result (honorable).csv')
-    .defer(d3.csv, './data/result (developer).csv')
-    .defer(d3.csv, './data/result (sites_of_the_day).csv')
-    .defer(d3.csv, './data/result (sites_of_the_month).csv')
-    .defer(d3.csv, './data/result (sites_of_the_year).csv')
+    .defer(d3.csv, "./data/result (nominees).csv")
+    .defer(d3.csv, "./data/result (honorable).csv")
+    .defer(d3.csv, "./data/result (developer).csv")
+    .defer(d3.csv, "./data/result (sites_of_the_day).csv")
+    .defer(d3.csv, "./data/result (sites_of_the_month).csv")
+    .defer(d3.csv, "./data/result (sites_of_the_year).csv")
     .await(analyze);
 });
