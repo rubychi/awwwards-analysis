@@ -6,9 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Awwwards Analysis</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="./libs/css/materialize.min.css">
+  <!-- build:css ./styles/style.css -->
   <link rel="stylesheet" href="./libs/css/normalize.css">
+  <link rel="stylesheet" href="./libs/css/materialize.min.css">
+  <link rel="stylesheet" href="../temp/styles/style.css">
+  <!-- endbuild -->
+  <!-- build:jsVendor ./scripts/vendor.js -->
+  <script src="./libs/js/jquery-3.2.1.min.js"></script>
+  <script src="./libs/js/d3.min.js"></script>
+  <script src="./libs/js/materialize.min.js"></script>
+  <!-- endbuild -->
 </head>
 <body>
   <nav>
@@ -55,9 +62,7 @@
       </div>
     </div>
   </div>
-  <script src="./libs/js/jquery-3.2.1.min.js"></script>
-  <script src="./libs/js/d3.min.js"></script>
-  <script src="./libs/js/materialize.min.js"></script>
-  <script src="./analyze.js"></script>
+  <!-- build:js ./scripts/analyze.js -->
+  <script src="../temp/scripts/analyze.js"></script>
 </body>
 </html>

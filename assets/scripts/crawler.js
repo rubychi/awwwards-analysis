@@ -1,33 +1,39 @@
 let axios = require('axios');
 let cheerio = require('cheerio');
+let mkdirp = require('mkdirp');
 let fs = require('fs');
+let getDirName = require('path').dirname;
 
 const AWWWARDS_PAGE = 'https://www.awwwards.com/websites/';
 const WORLD_POP_API = 'https://restcountries.eu/rest/v2/name/';
 const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month', 'sites_of_the_year', 'developer'];
 
-/*
- * Convert the original country name to fit REST Countries API
- *
- * @param {string} name: The original country name
- * @return {string} The converted name
- */
-function cnvCtryName(name) {
-  if (name.indexOf('South Korea') !== -1) {
-    name = 'Korea (Republic of)';
-  } else if (name.indexOf('U.S.A') !== -1) {
-    name = 'USA';
-    // 'Macedonia F.Y.R.O' to 'Macedonia'
-  } else if (name.indexOf('Macedonia') !== -1) {
-    name = 'Macedonia';
-  } else if (name.indexOf('Mauritius Island') !== -1) {
-    name = 'Mauritius';
-  }
-  return name;
-}
-
-/* Main */
 (async function() {
+  /* Create missing parent folder while writing file */
+  async function writeFile(path, contents, cb) {
+    let err = await mkdirp(getDirName(path));
+    if (err) return cb(err);
+    fs.writeFile(path, contents, cb);
+  }
+  /*
+   * Convert the original country name to fit REST Countries API
+   *
+   * @param {string} name: The original country name
+   * @return {string} The converted name
+   */
+  function cnvCtryName(name) {
+    if (name.indexOf('South Korea') !== -1) {
+      name = 'Korea (Republic of)';
+    } else if (name.indexOf('U.S.A') !== -1) {
+      name = 'USA';
+      // 'Macedonia F.Y.R.O' to 'Macedonia'
+    } else if (name.indexOf('Macedonia') !== -1) {
+      name = 'Macedonia';
+    } else if (name.indexOf('Mauritius Island') !== -1) {
+      name = 'Mauritius';
+    }
+    return name;
+  }
   for (let path of PATHS) {
     // Fetch raw AWWWARDS website
     let res = await axios.get(`${AWWWARDS_PAGE}${path}`);
@@ -83,13 +89,13 @@ function cnvCtryName(name) {
       }));
       // Write result to csv files
       let timestamp = `Timestamp\n${new Date()}\n`;
-      fs.writeFile('./data/timestamp.csv', timestamp);
+      writeFile('./temp/data/timestamp.csv', timestamp);
       let csv = 'Country,Percentage,Submission,Population\n';
       let sortedResult = result.sort((a, b) => a.country > b.country ? 1 : -1);
       sortedResult.forEach((item, i) => {
         csv += `${item.country},${item.percentage},${item.submission},${item.population}\n`;
       });
-      fs.writeFile(`./data/result (${path}).csv`, csv);
+      writeFile(`./temp/data/result (${path}).csv`, csv);
     }
   }
 })()

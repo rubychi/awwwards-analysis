@@ -9,10 +9,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^4.4.1"
+    "autoprefixer": "^7.1.2",
+    "babel-core": "^6.25.0",
+    "del": "^3.0.0",
+    "eslint": "^4.4.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-modernizr": "^1.0.0-alpha",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rev": "^8.0.0",
+    "gulp-run": "^1.7.1",
+    "gulp-uglify": "^3.0.0",
+    "gulp-usemin": "^0.3.28"
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "cheerio": "^1.0.0-rc.2"
+    "cheerio": "^1.0.0-rc.2",
+    "mkdirp": "^0.5.1"
   }
 }
