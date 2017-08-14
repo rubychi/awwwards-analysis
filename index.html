@@ -44,10 +44,8 @@
   var sort = null;
   var order = "percentage";
   var update = null;
-  function navClickHandler(e) {console.log(e);
-    curKey = $(e).text().toLowerCase();
-    console.log($(e));
-    console.log('curKey', curKey);
+  function navClickHandler(e) {
+    curKey = e.innerText.toLowerCase();
     order = "percentage";
     update(data[curKey], false);
   }
