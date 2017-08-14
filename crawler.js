@@ -81,11 +81,10 @@ function cnvCtryName(name) {
           data.percentage = ((data.submission / data.population) * 100);
         }
       }));
-
       // Write result to csv files
       // let csv = `${new Date()}\n`;
       let csv = 'Country,Percentage,Submission,Population\n';
-      let sortedResult = result.sort((a, b) => b.percentage - a.percentage);
+      let sortedResult = result.sort((a, b) => a.country > b.country ? 1 : -1);
       sortedResult.forEach((item, i) => {
         csv += `${item.country},${item.percentage},${item.submission},${item.population}\n`;
       });
