@@ -37,6 +37,7 @@ $.ajax({
     $("#preloader").addClass("hidden");
     $("#tip").removeClass("hidden");
     $("#tipTriangle").removeClass("hidden");
+    $("#sort").removeClass("hidden");
     function parseData(d) {
       return {
         country: d.Country,
