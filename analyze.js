@@ -33,6 +33,12 @@ function mobileAndTabletcheck() {
   (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
   return check;
 };
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function capitalizeFirstLetter(str) {
+  return str.replace(/\w\S*/g, function(text) { return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase(); });
+}
 function sortBtnClickHandler() {
   if (!$.isEmptyObject(data)) {
     curOrder === "percentage" ? curOrder = "country" : curOrder = "percentage";
@@ -124,15 +130,9 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
       .attr("offset", "100%")
       .attr("stop-color", "rgb(206,254,226)")
       .attr("stop-opacity", 1);
-
-  update(data[curKey], true);
-
-  function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-  capitalizeFirstLetter = function(str) {
-    return str.replace(/\w\S*/g, function(text) { return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();});
-  }
+  $(window).on("resize", function(event) {
+    update(data[curKey], false);
+  });
   sort = function(data, order) {
     if (order === "country") {
       data = data.sort(function(a, b) {
@@ -149,85 +149,6 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
       });
     }
     update(data, false);
-  }
-  window.addEventListener("resize", function(event) {
-    update(data[curKey], false);
-  });
-  var prevIdx = 0;
-  function mousemove(el, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx) {
-    // Invert x coordinate
-    var country = mapXCoordToCountry(d3.mouse(el)[0]);
-    var x = xScale(country);
-    var idx = mapCountryToIdx(country);
-    var y = yScale(data[idx].percentage);
-    // Calculating the boundary index to rotate the tip
-    var xAxisInterval = width / data.length;
-    let sum = 0, lastIdx = data.length - 1;
-    while(sum < 190) {
-      sum += xAxisInterval;
-      lastIdx--;
-    }
-    g.select(".guideline")
-        .transition()
-        .duration(50)
-        .attr("x1", x)
-        .attr("x2", x);
-    g.selectAll("circle")
-        .filter(function(d, i) { return i === prevIdx })
-        .transition()
-        .duration(50)
-        .style("fill", "white")
-        .attr("r", 3.5);
-    g.selectAll("circle")
-        .filter(function(d, i) { return i === idx })
-        .transition()
-        .duration(50)
-        .style("fill", "#0f747f")
-        .attr("r", 5);
-    g.selectAll(".x-axis-text")
-        .filter(function(d, i) { return i === prevIdx })
-        .transition()
-        .duration(50)
-        .style("font-size", "10px");
-    g.selectAll(".x-axis-text")
-        .filter(function(d, i) { return i === idx })
-        .transition()
-        .duration(50)
-        .style("font-size", "12px");
-    if (idx <= lastIdx) {
-      d3.select("#tip")
-          .transition()
-          .duration(50)
-          .style("top", y + margin.top + tipMargin.top + "px")
-          .style("left", x + margin.left + tipMargin.left + "px");
-      d3.select("#tipTriangle")
-          .style("transform", "rotate(45deg)")
-          .transition()
-          .duration(50)
-          .style("bottom", tipTriangleLeft.bottom)
-          .style("left", tipTriangleLeft.left);
-    } else {
-      d3.select("#tip")
-          .transition()
-          .duration(50)
-          .style("top", y + margin.top + tipMargin.top + "px")
-          .style("left", x - margin.left + "px");
-      d3.select("#tipTriangle")
-          .style("transform", "rotate(-45deg)")
-          .transition()
-          .duration(50)
-          .style("bottom", tipTriangleRight.bottom)
-          .style("left", tipTriangleRight.left);
-    }
-    d3.select("#country")
-        .text(data[idx].country);
-    d3.select("#percentage")
-        .text(data[idx].percentage.toFixed(11));
-    d3.select("#submission")
-        .text(data[idx].submission);
-    d3.select("#population")
-        .text(numberWithCommas(data[idx].population));
-    prevIdx = idx;
   }
   function update(data, initialize) {
     width = parseInt(d3.select("#chart").style("width")) - margin.left - margin.right;
@@ -248,7 +169,8 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
         .x(function(d) { return xScale(d.country); })
         .y(function(d) { return yScale(d.percentage); })
         .curve(d3.curveMonotoneX);
-
+    // Previous mousemove position
+    var prevIdx = 0;
     if (initialize) {
       // Draw area
       g.append("path")
@@ -321,9 +243,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
           .attr("width", width)
           .attr("height", height)
           .attr("opacity", 0)
-          .on("mousemove", function () {
-            mousemove(this, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx);
-          });
+          .on("mousemove", mousemove(this));
     } else {
       g.select(".area")
           .data([data])
@@ -384,9 +304,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
       g.select(".overlay")
           .attr("width", width)
           .attr("height", height)
-          .on("mousemove", function () {
-            mousemove(this, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx);
-          });
+          .on("mousemove", mousemove(this));
       prevIdx = 0;
     }
     g.select(".guideline")
@@ -414,5 +332,82 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
         .text(data[0].submission);
     d3.select("#population")
         .text(numberWithCommas(data[0].population));
+
+    function mousemove(el) {
+      // Invert x coordinate
+      var country = mapXCoordToCountry(d3.mouse(el)[0]);
+      var x = xScale(country);
+      var idx = mapCountryToIdx(country);
+      var y = yScale(data[idx].percentage);
+      // Calculating the boundary index to rotate the tip
+      var xAxisInterval = width / data.length;
+      let sum = 0, lastIdx = data.length - 1;
+      while(sum < 190) {
+        sum += xAxisInterval;
+        lastIdx--;
+      }
+      g.select(".guideline")
+          .transition()
+          .duration(50)
+          .attr("x1", x)
+          .attr("x2", x);
+      g.selectAll("circle")
+          .filter(function(d, i) { return i === prevIdx })
+          .transition()
+          .duration(50)
+          .style("fill", "white")
+          .attr("r", 3.5);
+      g.selectAll("circle")
+          .filter(function(d, i) { return i === idx })
+          .transition()
+          .duration(50)
+          .style("fill", "#0f747f")
+          .attr("r", 5);
+      g.selectAll(".x-axis-text")
+          .filter(function(d, i) { return i === prevIdx })
+          .transition()
+          .duration(50)
+          .style("font-size", "10px");
+      g.selectAll(".x-axis-text")
+          .filter(function(d, i) { return i === idx })
+          .transition()
+          .duration(50)
+          .style("font-size", "12px");
+      if (idx <= lastIdx) {
+        d3.select("#tip")
+            .transition()
+            .duration(50)
+            .style("top", y + margin.top + tipMargin.top + "px")
+            .style("left", x + margin.left + tipMargin.left + "px");
+        d3.select("#tipTriangle")
+            .style("transform", "rotate(45deg)")
+            .transition()
+            .duration(50)
+            .style("bottom", tipTriangleLeft.bottom)
+            .style("left", tipTriangleLeft.left);
+      } else {
+        d3.select("#tip")
+            .transition()
+            .duration(50)
+            .style("top", y + margin.top + tipMargin.top + "px")
+            .style("left", x - margin.left + "px");
+        d3.select("#tipTriangle")
+            .style("transform", "rotate(-45deg)")
+            .transition()
+            .duration(50)
+            .style("bottom", tipTriangleRight.bottom)
+            .style("left", tipTriangleRight.left);
+      }
+      d3.select("#country")
+          .text(data[idx].country);
+      d3.select("#percentage")
+          .text(data[idx].percentage.toFixed(11));
+      d3.select("#submission")
+          .text(data[idx].submission);
+      d3.select("#population")
+          .text(numberWithCommas(data[idx].population));
+      prevIdx = idx;
+    }
   }
+  update(data[curKey], true);
 }
