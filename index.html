@@ -291,23 +291,31 @@
             .filter(function(d, i) { return i === 0 })
             .style("fill", "#0f747f")
             .attr("r", 5);
+        g.selectAll(".x-axis-text")
+          .remove();
         g.selectAll(".x-axis")
             .transition()
             .duration(500)
-            .call(d3.axisBottom(xScale));
-            // .selectAll(".domain")
-            // .remove();
-        // Exit x-axis texts
-        g.selectAll(".x-axis-text")
-          .exit()
-          .remove();
-        // Enter x-axis texts
-        g.selectAll(".x-axis-text")
-          .enter()
+            .call(d3.axisBottom(xScale))
+            .selectAll("text")
+            .attr("class", "x-axis-text")
             .attr("dx", "-0.8em")
             .attr("dy", "0.15em")
             .style("transform", "rotate(-65deg)")
             .style("text-anchor", "end");
+            // .selectAll(".domain")
+            // .remove();
+        // // Exit x-axis texts
+        // g.selectAll(".x-axis-text")
+        //   .exit()
+        //   .remove();
+        // // Enter x-axis texts
+        // g.selectAll(".x-axis-text")
+        //   .enter()
+        //     .attr("dx", "-0.8em")
+        //     .attr("dy", "0.15em")
+        //     .style("transform", "rotate(-65deg)")
+        //     .style("text-anchor", "end");
         // Update x-axis texts
         g.selectAll(".x-axis-text")
             .style("font-size", "10px")
