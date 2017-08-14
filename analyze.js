@@ -1,8 +1,9 @@
+// This is a function
 var sort = null;
 var data = {};
 var curKey = "";
 var curOrder = "country";
-var timestamp = null;
+var timestamp = "";
 var isMobileOrTablet = mobileAndTabletcheck();
 var prevNav = null;
 if (isMobileOrTablet) {
@@ -242,7 +243,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
           .attr("width", width)
           .attr("height", height)
           .attr("opacity", 0)
-          .on("mousemove", mousemove(this));
+          .on("mousemove", mousemove);
     } else {
       g.select(".area")
           .data([data])
@@ -303,7 +304,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
       g.select(".overlay")
           .attr("width", width)
           .attr("height", height)
-          .on("mousemove", mousemove(this));
+          .on("mousemove", mousemove);
       prevIdx = 0;
     }
     g.select(".guideline")
@@ -332,9 +333,9 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
     d3.select("#population")
         .text(numberWithCommas(data[0].population));
 
-    function mousemove(el) {
+    function mousemove() {
       // Invert x coordinate
-      var country = mapXCoordToCountry(d3.mouse(el)[0]);
+      var country = mapXCoordToCountry(d3.mouse(this)[0]);
       var x = xScale(country);
       var idx = mapCountryToIdx(country);
       var y = yScale(data[idx].percentage);
