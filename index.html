@@ -38,16 +38,6 @@
   <script src="./libs/js/d3.min.js"></script>
   <script src="./libs/js/materialize.min.js"></script>
   <script>
-  // Read data
-  d3.queue()
-    .defer(d3.csv, './data/result (nominees).csv')
-    .defer(d3.csv, './data/result (honorable).csv')
-    .defer(d3.csv, './data/result (developer).csv')
-    .defer(d3.csv, './data/result (sites_of_the_day).csv')
-    .defer(d3.csv, './data/result (sites_of_the_month).csv')
-    .defer(d3.csv, './data/result (sites_of_the_year).csv')
-    .await(analyze);
-
   var analyze = function(error, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
       console.log(error);
@@ -368,6 +358,15 @@
     };
     update(data, true);
   }
+  // Read data
+  d3.queue()
+    .defer(d3.csv, './data/result (nominees).csv')
+    .defer(d3.csv, './data/result (honorable).csv')
+    .defer(d3.csv, './data/result (developer).csv')
+    .defer(d3.csv, './data/result (sites_of_the_day).csv')
+    .defer(d3.csv, './data/result (sites_of_the_month).csv')
+    .defer(d3.csv, './data/result (sites_of_the_year).csv')
+    .await(analyze);
   </script>
 </body>
 </html>
