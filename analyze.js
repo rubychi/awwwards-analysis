@@ -14,7 +14,7 @@ function navClickHandler(e) {
 }
 $.ajax({
   url: "/awwwards-analysis/data/result (nominees).csv",
-}).then(function(data, status, xhr) {
+}).then(function(d, stat, xhr) {
   timestamp = xhr.getResponseHeader("Last-Modified");
   /* main */
   function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
