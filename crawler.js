@@ -72,6 +72,11 @@ function cnvCtryName(name) {
         if (item.country !== 'Hong Kong - Macau') {
           let res = await axios.get(url);
           data = result.filter(x => x.country === item.country)[0];
+          if (data.country === 'Korea (Republic of)') {
+            data.country = 'South Korea';
+          } else if (data.country === 'Korea (Democratic People\'s Republic of)') {
+            data.country = 'North Korea';
+          }
           data.population = res.data[0].population;
           data.percentage = ((data.submission / data.population) * 100);
         }
@@ -79,12 +84,12 @@ function cnvCtryName(name) {
 
       // Write result to csv files
       // let csv = `${new Date()}\n`;
-      csv += 'Country,Percentage,Submission,Population\n';
+      let csv = 'Country,Percentage,Submission,Population\n';
       let sortedResult = result.sort((a, b) => b.percentage - a.percentage);
       sortedResult.forEach((item, i) => {
         csv += `${item.country},${item.percentage},${item.submission},${item.population}\n`;
       });
-      fs.writeFile(`result (${path}).csv`, csv);
+      fs.writeFile(`./data/result (${path}).csv`, csv);
     }
   }
 })()
