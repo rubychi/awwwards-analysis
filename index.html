@@ -33,7 +33,7 @@
       <div id="tipTriangle" class="tip-triangle">&#9662;</div>
     </div>
     <svg id="chart"></svg>
-    <a class="btn-floating btn-large waves-effect waves-light red right btn" onclick="sort(data[curKey])"><i class="material-icons">sort</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light red right btn" onclick="function() { curOrder === "percentage" ? curOrder = "country" : curOrder = "percentage"; sort(data[curKey], curOrder);"><i class="material-icons">sort</i></a>
   </div>
   <script src="./libs/js/jquery-3.2.1.min.js"></script>
   <script src="./libs/js/d3.min.js"></script>
@@ -42,11 +42,10 @@
   var data = {};
   var curKey = '';
   var sort = null;
-  var order = "percentage";
+  var curOrder = "percentage";
   function navClickHandler(e) {
     curKey = e.innerText.toLowerCase();
-    order = "country";
-    sort(data[curKey]);
+    sort(data[curKey], "country");
   }
   function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
@@ -70,8 +69,8 @@
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    sort = function(data) {
-      if (order === "percentage") {
+    sort = function(data, order) {
+      if (order === "country") {
         data = data.sort(function(a, b) {
           if (a.country > b.country) {
             return 1;
@@ -80,12 +79,10 @@
           }
           return 0;
         });
-        order = "country";
       } else {
         data = data.sort(function(a, b) {
           return b.percentage - a.percentage;
         });
-        order = "percentage";
       }
       update(data, false);
     }
