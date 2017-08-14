@@ -294,7 +294,7 @@
         g.selectAll(".x-axis")
             .transition()
             .duration(500)
-            .call(d3.axisBottom(xScale));
+            .call(d3.axisBottom(xScale))
             // .selectAll(".domain")
             // .remove();
         g.selectAll(".y-axis")
@@ -302,6 +302,10 @@
             .duration(500)
             .call(d3.axisLeft(yScale))
         g.selectAll(".x-axis-text")
+            .attr("dx", "-0.8em")
+            .attr("dy", "0.15em")
+            .style("transform", "rotate(-65deg)")
+            .style("text-anchor", "end");
             .style("font-size", "10px")
             .filter(function(d, i) { return i === 0 })
             .style("font-size", "12px");
