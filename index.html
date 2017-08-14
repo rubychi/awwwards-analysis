@@ -267,19 +267,19 @@
             .transition()
             .duration(500)
             .attr("d", line);
-        // Exit
+        // Exit circles
         g.selectAll("circle")
             .data(data)
           .exit()
             .remove();
-        // Enter
+        // Enter circles
         g.selectAll("circle")
             .data(data)
           .enter()
             .append("circle")
             .attr("class", "circle")
             .attr("r", 3.5);
-        // Update
+        // Update circles
         g.selectAll("circle")
             .data(data)
             .style("fill", "white")
@@ -297,16 +297,19 @@
             .call(d3.axisBottom(xScale));
             // .selectAll(".domain")
             // .remove();
-        // Exit
+        // Exit x-axis texts
         g.selectAll(".x-axis-text")
           .exit()
           .remove();
-        // Update
+        // Enter x-axis texts
         g.selectAll(".x-axis-text")
+          .enter()
             .attr("dx", "-0.8em")
             .attr("dy", "0.15em")
             .style("transform", "rotate(-65deg)")
-            .style("text-anchor", "end")
+            .style("text-anchor", "end");
+        // Update x-axis texts
+        g.selectAll(".x-axis-text")
             .style("font-size", "10px")
             .filter(function(d, i) { return i === 0 })
             .style("font-size", "12px");
