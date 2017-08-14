@@ -26,6 +26,7 @@
   </nav>
   <div class="nav-content">
     <div id="tooltip" class="tip">
+      Country: <span id="country"></span>
       Percentage: <span id="percentage"></span>%<br>
       Submission: <span id="submission"></span><br>
       Population: <span id="population"></span>
@@ -148,6 +149,8 @@
             .style("bottom", "-35px")
             .style("left", "173px");
       }
+      d3.select("#country")
+          .text(data[idx].country);
       d3.select("#percentage")
           .text(data[idx].percentage.toFixed(11));
       d3.select("#submission")
@@ -317,6 +320,8 @@
           .duration(50)
           .style("bottom", "-35px")
           .style("left", "-15px");
+      d3.select("#country")
+          .text(data[0].country);
       d3.select("#percentage")
           .text(data[0].percentage.toFixed(11));
       d3.select("#submission")
