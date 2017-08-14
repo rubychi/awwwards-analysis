@@ -45,6 +45,7 @@
   var curOrder = "percentage";
   function navClickHandler(e) {
     curKey = e.innerText.toLowerCase();
+    curOrder = "country";
     sort(data[curKey], "country");
   }
   function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
