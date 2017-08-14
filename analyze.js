@@ -321,7 +321,8 @@ $.ajax({
           .transition()
           .duration(500)
           .attr("x1", 0)
-          .attr("x2", 0);
+          .attr("x2", 0)
+          .attr("y2", height);
       d3.select("#tip")
           .transition()
           .duration(500)
