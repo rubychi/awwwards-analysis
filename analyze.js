@@ -1,4 +1,3 @@
-var capitalizeFirstLetter = null;
 var sort = null;
 var data = {};
 var curKey = "";
