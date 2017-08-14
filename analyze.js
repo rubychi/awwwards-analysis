@@ -22,7 +22,7 @@ function navClickHandler(e) {
     curKey = e.innerText.toLowerCase();
     curOrder = "country";
     sort(data[curKey], "country");
-    $("#timestamp").text(timestampLabel + capitalizeFirstLetter(curKey));
+    $("#timestamp").text(timestamp + capitalizeFirstLetter(curKey));
   }
 }
 $.ajax({
@@ -30,7 +30,7 @@ $.ajax({
 }).then(function(d, stat, xhr) {
   timestamp = xhr.getResponseHeader("Last-Modified");
   /* main */
-  function analyze(error, timestamp, nominees, honorable, developer, sotd, sotm, soty) {
+  function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
       console.log(error);
     }
@@ -45,7 +45,7 @@ $.ajax({
         population: +d.Population,
       };
     }
-    timestampLabel = timestamp + ', ';
+    timestamp = time.Timestamp + ', ';
     data["nominees"] = nominees.map(parseData);
     data["honorable mention"] = honorable.map(parseData);
     data["developer award"] = developer.map(parseData);
@@ -220,7 +220,7 @@ $.ajax({
             .style("text-anchor", "end")
             .attr("y", "-35")
             .attr("dx", "170")
-            .text(timestampLabel + ", " + capitalizeFirstLetter(curKey));
+            .text(timestamp + ", " + capitalizeFirstLetter(curKey));
         // Draw trendline
         g.append("path")
             .datum(data)
