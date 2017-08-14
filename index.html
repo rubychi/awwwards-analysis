@@ -46,7 +46,7 @@
     .defer(d3.csv, './data/result (sites_of_the_day).csv')
     .defer(d3.csv, './data/result (sites_of_the_month).csv')
     .defer(d3.csv, './data/result (sites_of_the_year).csv')
-    .await(analyze);
+    .await(analyze());
 
   var analyze = function(error, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
@@ -66,14 +66,11 @@
     sotd = sotd.map(parseData);
     sotm = sotm.map(parseData);
     soty = soty.map(parseData);
-
     var data = nominees;
     console.log(data);
-
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-
     var order = "percentage";
     function sort(data) {
       if (order === "percentage") {
@@ -94,7 +91,6 @@
       }
       update(data, false);
     }
-
     var prevIdx = 0;
     function mousemove(el, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx) {
       // Invert x coordinate
@@ -109,7 +105,6 @@
         sum += xAxisInterval;
         lastIdx--;
       }
-
       g.select(".guideline")
           .transition()
           .duration(50)
@@ -170,7 +165,6 @@
           .text(numberWithCommas(data[idx].population));
       prevIdx = idx;
     }
-
     function update(data, initialize) {
       var xScale = d3.scalePoint().domain(data.map(function(d) { return d.country; })).range([0, width]);
       var yScale = d3.scaleLinear().domain(d3.extent(data, function(d) { return d.percentage; })).range([height, 0]);
@@ -372,7 +366,6 @@
       top: -45,
       left: 20,
     };
-
     update(data, true);
   }
   </script>
