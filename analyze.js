@@ -101,9 +101,9 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
   var tipTriangleRight = {};
   if (isMobileOrTablet) {
     tipMargin.top = -65;
-    tipMargin.left = 11;
+    tipMargin.left = 8;
     tipTriangleLeft.bottom = "-33px";
-    tipTriangleLeft.left = "-9px";
+    tipTriangleLeft.left = "-7px";
     tipTriangleRight.bottom = "-25px";
     tipTriangleRight.left = "174px";
   } else {
