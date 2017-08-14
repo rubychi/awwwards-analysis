@@ -46,7 +46,7 @@
     .defer(d3.csv, './data/result (sites_of_the_day).csv')
     .defer(d3.csv, './data/result (sites_of_the_month).csv')
     .defer(d3.csv, './data/result (sites_of_the_year).csv')
-    .await(analyze());
+    .await(analyze);
 
   var analyze = function(error, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
