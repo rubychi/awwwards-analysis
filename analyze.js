@@ -202,11 +202,14 @@ $.ajax({
             .append("text")
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "end")
+            .attr("y", "-60")
             .text("Percentage (%)");
         g.select(".y-axis")
             .append("text")
             .attr("id", "timestamp")
             .style("text-anchor", "end")
+            .attr("y", "-30")
+            .attr("dx", "160")
             .text(timestamp + ", " + capitalizeFirstLetter(curKey));
         // Draw trendline
         g.append("path")
@@ -333,7 +336,7 @@ $.ajax({
         margin = {
           top: 80,
           right: 80,
-          bottom: 125,
+          bottom: 130,
           left: 100,
         },
         width = parseInt(d3.select("#chart").style("width")) - margin.left - margin.right,
