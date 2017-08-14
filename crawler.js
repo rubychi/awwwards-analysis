@@ -82,7 +82,8 @@ function cnvCtryName(name) {
         }
       }));
       // Write result to csv files
-      // let csv = `${new Date()}\n`;
+      let timestamp = `Timestamp\n${new Date()}\n`;
+      fs.writeFile('./data/timestamp.csv', timestamp);
       let csv = 'Country,Percentage,Submission,Population\n';
       let sortedResult = result.sort((a, b) => a.country > b.country ? 1 : -1);
       sortedResult.forEach((item, i) => {

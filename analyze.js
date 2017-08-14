@@ -3,7 +3,7 @@ var sort = null;
 var data = {};
 var curKey = "";
 var curOrder = "country";
-var timestamp = null;
+var timestampLabel = null;
 var prevNav = $("#nav-mobile").children().first();
 function sortBtnClickHandler() {
   if (!$.isEmptyObject(data)) {
@@ -22,7 +22,7 @@ function navClickHandler(e) {
     curKey = e.innerText.toLowerCase();
     curOrder = "country";
     sort(data[curKey], "country");
-    $("#timestamp").text(timestamp + ", " + capitalizeFirstLetter(curKey));
+    $("#timestamp").text(timestampLabel + capitalizeFirstLetter(curKey));
   }
 }
 $.ajax({
@@ -30,7 +30,7 @@ $.ajax({
 }).then(function(d, stat, xhr) {
   timestamp = xhr.getResponseHeader("Last-Modified");
   /* main */
-  function analyze(error, nominees, honorable, developer, sotd, sotm, soty) {
+  function analyze(error, timestamp, nominees, honorable, developer, sotd, sotm, soty) {
     if (error) {
       console.log(error);
     }
@@ -45,6 +45,7 @@ $.ajax({
         population: +d.Population,
       };
     }
+    timestampLabel = timestamp + ', ';
     data["nominees"] = nominees.map(parseData);
     data["honorable mention"] = honorable.map(parseData);
     data["developer award"] = developer.map(parseData);
@@ -219,7 +220,7 @@ $.ajax({
             .style("text-anchor", "end")
             .attr("y", "-35")
             .attr("dx", "170")
-            .text(timestamp + ", " + capitalizeFirstLetter(curKey));
+            .text(timestampLabel + ", " + capitalizeFirstLetter(curKey));
         // Draw trendline
         g.append("path")
             .datum(data)
@@ -379,6 +380,7 @@ $.ajax({
   }
   // Read data
   d3.queue()
+    .defer(d3.csv, "./data/timestamp.csv")
     .defer(d3.csv, "./data/result (nominees).csv")
     .defer(d3.csv, "./data/result (honorable).csv")
     .defer(d3.csv, "./data/result (developer).csv")
