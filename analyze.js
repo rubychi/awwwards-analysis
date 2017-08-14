@@ -56,7 +56,7 @@ $.ajax({
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     capitalizeFirstLetter = function(string) {
-      return string.charAt(0).toUpperCase() + string.slice(1);
+      return str.replace(/\w\S*/g, function(text) { return text.charAt(0).toUpperCase() + text.substr(1).toLowerCase();});
     }
     sort = function(data, order) {
       if (order === "country") {
