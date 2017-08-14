@@ -77,7 +77,7 @@ $.ajax({
     }
     // Add responsive support
     window.addEventListener("resize", function(event) {
-      update(data, false);
+      update(data[curKey], false);
     });
     var prevIdx = 0;
     function mousemove(el, data, xScale, yScale, mapXCoordToCountry, mapCountryToIdx) {
