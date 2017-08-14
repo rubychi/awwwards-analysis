@@ -1,18 +1,18 @@
 var capitalizeFirstLetter = null;
 var sort = null;
-var data = {};
+var data = null;
 var curKey = '';
 var curOrder = "country";
 var timestamp = null;
 var prevNav = null;
 function sortBtnClickHandler() {
-  if (data.length) {
+  if (data) {
     curOrder === 'percentage' ? curOrder = 'country' : curOrder = 'percentage';
     sort(data[curKey], curOrder);
   }
 }
 function navClickHandler(e) {
-  if (data.length) {
+  if (data) {
     if (prevNav) {
       prevNav.removeClass("active");
     }
