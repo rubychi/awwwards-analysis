@@ -2,9 +2,9 @@
 
 This is a rough estimation for analyzing how active the participants are in each country by dividing their submission by the total population of the country in each award section.
 
-## [Live Demo](https://rubychi.github.io/awwwards-analysis/)
+## [Live Demo](https://awwwards-analysis.herokuapp.com/)
 
-You can see a complete working example [here](https://rubychi.github.io/awwwards-analysis/)
+You can see a complete working example [here](https://awwwards-analysis.herokuapp.com/)
 
 ## Features
 
