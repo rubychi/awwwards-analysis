@@ -1,6 +1,6 @@
 # Awwwards Analysis
 
-This is a rough estimation for analyzing how active the participants are in each country by dividing their submission by the total population of the country in each award section
+This is a rough estimation for analyzing how active the participants are in each country by dividing their submission by total population of the country in each award section
 
 ## [Live Demo](https://awwwards-analysis.herokuapp.com/)
 
