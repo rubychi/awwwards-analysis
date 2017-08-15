@@ -46,12 +46,17 @@ Follow the instructions below to set up the environment and run this project on 
 > npm install gulp -g
 ```
 
-4. Build a production version of the website
+4. Build a production version of the website (all files will be put inside the folder "docs")
 ```
 > gulp build
 ```
 
-5. All files will be put inside the folder "docs"
+5. Start the server and the service
+```
+> node server.js
+```
+
+6. See it up and running on http://localhost:8080
 
 ## Built With
 
@@ -63,6 +68,10 @@ Follow the instructions below to set up the environment and run this project on 
 * materialize.css
 * autoprefixer
 * postcss
+
+### Backend
+
+* express
 
 ### Utils
 
