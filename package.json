@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "postinstall": "gulp",
+    "postinstall": "gulp build",
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

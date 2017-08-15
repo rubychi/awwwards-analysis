@@ -38,5 +38,3 @@ gulp.task('clearTemp', ['copyGeneralFiles'], function() {
 });
 
 gulp.task('build', ['delDistFolder', 'useminTrigger', 'copyGeneralFiles', 'clearTemp']);
-// Used for heroku
-gulp.task('default', ['delDistFolder', 'useminTrigger', 'copyGeneralFiles', 'clearTemp']);
