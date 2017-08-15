@@ -56,10 +56,31 @@ Follow the instructions below to set up the environment and run this project on 
 > node server.js
 ```
 
-6. See it up and running on http://localhost:8080
+6. See it up and running on http://localhost:3000
+
+### To recrawl data, type the following command<br>
+```
+> gulp recrawl
+```
+
+## Deployment
+
+1. Deploy to Heroku
+```
+> heroku create
+> git push heroku master
+```
+
+2. Open the app in the browser
+```
+> heroku open
+```
+
+### Alternatively, click this button to quickly deploy to your own Heroku server<br>
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/rubychi/awwwards-analysis)
 
 ## Built With
-
 ### Frontend
 
 * jquery

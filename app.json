@@ -1,0 +1,11 @@
+{
+  "name": "awwwards-analysis",
+  "description": "A rough estimation for analyzing how active the Awwwards participants are in each country",
+  "keywords": [
+    "AWWWARDS",
+    "Analysis",
+    "D3.js",
+    "MaterializeCSS"
+  ],
+  "repository": "https://github.com/rubychi/awwwards-analysis.git"
+}
