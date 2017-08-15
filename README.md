@@ -71,6 +71,11 @@ Follow the instructions below to set up the environment and run this project on 
 > git push heroku master
 ```
 
+2. Set up config vars for telling Heroku to use gulp in devDevependencies
+```
+> heroku config:set NPM_CONFIG_PRODUCTION=false
+```
+
 2. Open the app in the browser
 ```
 > heroku open
