@@ -21,6 +21,10 @@ You can see a complete working example [here](https://awwwards-analysis.herokuap
 
 * Responsive web design (RWD)
 
+### Upcoming
+
+* Visualize data on the world map
+
 ## Getting Started
 
 Follow the instructions below to set up the environment and run this project on your local machine
