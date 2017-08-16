@@ -99,10 +99,6 @@ Follow the instructions below to set up the environment and run this project on 
 * autoprefixer
 * postcss
 
-### Backend
-
-* express
-
 ### Utils
 
 * gulp
