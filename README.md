@@ -1,4 +1,6 @@
 # Awwwards Analysis
+[![Known Vulnerabilities](https://snyk.io/test/github/rubychi/awwwards-analysis/badge.svg)](https://snyk.io/test/github/rubychi/awwwards-analysis)
+[![NSP Status](https://nodesecurity.io/orgs/rubychi/projects/d87aa7de-02c5-4c87-8f00-fdb5440c0f57/badge)](https://nodesecurity.io/orgs/rubychi/projects/d87aa7de-02c5-4c87-8f00-fdb5440c0f57)
 
 This is a rough estimation for analyzing how active the participants are in each country by dividing their submission by total population of the country they come from in each award section
 
