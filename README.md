@@ -98,17 +98,14 @@ Follow the instructions below to set up the environment and run this project on 
 * d3.js (v4)
 * normalize.css
 * materialize.css
-* autoprefixer
 * postcss
 
 ### Utils
 
 * gulp
-* babel
 * axios
-* cheerio
 * async-retry
-* mkdirp-promise
+* cheerio
 
 ## Contributing
 
