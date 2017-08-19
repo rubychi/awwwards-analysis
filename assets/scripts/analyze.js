@@ -344,7 +344,7 @@ function analyze(error, time, nominees, honorable, developer, sotd, sotm, soty) 
       var y = yScale(data[idx].percentage);
       // Calculating the boundary index to rotate the tip
       var xAxisInterval = width / data.length;
-      let sum = 0, lastIdx = data.length - 1;
+      var sum = 0, lastIdx = data.length - 1;
       while(sum < 190) {
         sum += xAxisInterval;
         lastIdx--;
