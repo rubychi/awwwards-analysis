@@ -95,7 +95,7 @@ Follow the instructions below to set up the environment and run this project on 
 ### Frontend
 
 * jquery
-* d3.js (v4)
+* d3 (v4)
 * normalize.css
 * materialize.css
 * postcss
