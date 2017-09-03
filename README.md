@@ -87,7 +87,9 @@ Follow the instructions below to set up the environment and run this project on 
 > heroku open
 ```
 
-### Alternatively, click this button to deploy to your Heroku server<br>
+### Alternatively
+
+click this button to deploy to your Heroku server
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/rubychi/awwwards-analysis)
 
