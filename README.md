@@ -21,8 +21,6 @@ You can see a complete working example [here](https://awwwards-analysis.herokuap
 
 * Sort result by country name or by  percentage derived from dividing the submission by total population of each country
 
-* Responsive web design (RWD)
-
 ### Upcoming
 
 * Visualize data on the world map
