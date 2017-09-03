@@ -106,15 +106,3 @@ Follow the instructions below to set up the environment and run this project on 
 * axios
 * async-retry
 * cheerio
-
-## Contributing
-
-Contributions of any kind are welcome
-
-## Author
-
-**Ruby Chi**
-
-## License
-
-This project is licensed under the MIT License
