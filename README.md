@@ -6,8 +6,6 @@ This is a rough estimation for analyzing how active the participants are by divi
 
 ## [Live Demo](https://awwwards-analysis.herokuapp.com/)
 
-You can see a complete working example [here](https://awwwards-analysis.herokuapp.com/)
-
 ## Features
 
 * Present analysis results of six award sections
