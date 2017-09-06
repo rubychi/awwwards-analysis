@@ -2,7 +2,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/rubychi/awwwards-analysis/badge.svg)](https://snyk.io/test/github/rubychi/awwwards-analysis)
 [![NSP Status](https://nodesecurity.io/orgs/rubychi/projects/d87aa7de-02c5-4c87-8f00-fdb5440c0f57/badge)](https://nodesecurity.io/orgs/rubychi/projects/d87aa7de-02c5-4c87-8f00-fdb5440c0f57)
 
-This is a rough estimation for analyzing how active the participants are in each country by dividing their submission by total population of the country they come from in each award section
+This is a rough estimation for analyzing how active the participants are by dividing their submission by total population of each country in six award sections
 
 ## [Live Demo](https://awwwards-analysis.herokuapp.com/)
 
@@ -20,8 +20,6 @@ You can see a complete working example [here](https://awwwards-analysis.herokuap
   * Site Of The Year
 
 * Sort result by country name or by  percentage derived from dividing the submission by total population of each country
-
-* Responsive web design (RWD)
 
 ### Upcoming
 
@@ -87,7 +85,9 @@ Follow the instructions below to set up the environment and run this project on 
 > heroku open
 ```
 
-### Alternatively, click this button to quickly deploy to your own Heroku server<br>
+### Alternatively
+
+click this button to deploy to your Heroku server
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/rubychi/awwwards-analysis)
 
@@ -106,15 +106,3 @@ Follow the instructions below to set up the environment and run this project on 
 * axios
 * async-retry
 * cheerio
-
-## Contributing
-
-Contributions of any kind are welcome
-
-## Author
-
-**Ruby Chi**
-
-## License
-
-This project is licensed under the MIT License
