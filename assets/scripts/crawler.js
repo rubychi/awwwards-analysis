@@ -25,7 +25,7 @@ const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month'
           let key = $(el).text();
           if (result[path].filter(x => x.country === key).length === 0) {
             let data = {};
-            key = cnvCtryName(key);
+            key = cnvNameForAPI(key);
             // Exclude country which is not in the list of REST Countries API
             if (key !== 'Cape Verde') {
               data.country = key;
@@ -57,11 +57,7 @@ const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month'
         let res = null;
         await retry(async () => { res = await axios.get(url) });
         data = result[path].filter(x => x.country === item.country)[0];
-        if (data.country === 'Korea (Republic of)') {
-          data.country = 'South Korea';
-        } else if (data.country === 'Korea (Democratic People\'s Republic of)') {
-          data.country = 'North Korea';
-        }
+        data.country = cnvNameForAwwwards(data.country);
         data.population = res.data[0].population;
         data.percentage = ((data.submission / data.population) * 100);
       }
@@ -77,23 +73,36 @@ const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month'
     writeFile(`./temp/data/result (${path}).csv`, csv);
   });
   /*
-   * Convert the original country name to fit REST Countries API
+   * Convert the awwwards country name to fit REST Countries API
    *
-   * @param {string} name: The original country name
+   * @param {string} name: The awwwards country name
    * @return {string} The converted name
    */
-  function cnvCtryName(name) {
-    if (name.indexOf('South Korea') !== -1) {
-      name = 'Korea (Republic of)';
-    } else if (name.indexOf('U.S.A') !== -1) {
-      name = 'USA';
-      // 'Macedonia F.Y.R.O' to 'Macedonia'
-    } else if (name.indexOf('Macedonia') !== -1) {
-      name = 'Macedonia';
-    } else if (name.indexOf('Mauritius Island') !== -1) {
-      name = 'Mauritius';
+  function cnvNameForAPI(name) {
+    switch (name) {
+      case 'South Korea': return 'Korea (Republic of)';
+      case 'North Korea': return 'Korea (Democratic People\'s Republic of)';
+      case 'U.S.A.': return 'USA';
+      case 'Macedonia F.Y.R.O': return 'Macedonia';
+      case 'Mauritius Island': return 'Mauritius';
+      default: return name;
     }
-    return name;
+  }
+  /*
+   * Convert the country name from REST Countries API back to the awwwards'
+   *
+   * @param {string} name: The country name from REST Countries API
+   * @return {string} The converted name
+   */
+  function cnvNameForAwwwards(name) {
+    switch (name) {
+      case 'Korea (Republic of)': return 'South Korea';
+      case 'Korea (Democratic People\'s Republic of)': return 'North Korea';
+      case 'USA': return 'U.S.A.';
+      case 'Macedonia': return 'Macedonia F.Y.R.O';
+      case 'Mauritius': return 'Mauritius Island';
+      default: return name;
+    }
   }
   /* Create missing parent folder while writing file */
   async function writeFile(path, contents) {
