@@ -26,6 +26,7 @@ gulp.task('usemin', ['styles', 'scripts'], function() {
 gulp.task('copyGeneralFiles', ['crawl'], function() {
   var pathsToCopy = [
     './assets/libs/**/*.{woff,woff2}',
+	'./assets/other/*',
     './temp/**/*.csv',
   ];
   return gulp.src(pathsToCopy)
