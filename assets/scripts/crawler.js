@@ -18,7 +18,7 @@ const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month'
     let $ = cheerio.load(res.data);
     result[path] = [];
     $('.name-filter').each((i, el) => {
-      if (el.children[0].data.toLowerCase() === 'country') {
+      if (el.children[0].data.toLowerCase() === 'countries') {
         let dropDownMenu = $(el).next();
         // Raw html: <a href="/websites/Argentina/" data-count="46">Argentina</a>
         dropDownMenu.find('a').each((i, el) => {
@@ -82,9 +82,10 @@ const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month'
     switch (name) {
       case 'South Korea': return 'Korea (Republic of)';
       case 'North Korea': return 'Korea (Democratic People\'s Republic of)';
-      case 'U.S.A.': return 'USA';
+      case 'United States': return 'United States of America';
       case 'Macedonia F.Y.R.O': return 'Macedonia';
       case 'Mauritius Island': return 'Mauritius';
+      case 'Réunion': return 'Reunion';
       default: return name;
     }
   }
@@ -98,9 +99,10 @@ const PATHS = ['nominees', 'honorable', 'sites_of_the_day', 'sites_of_the_month'
     switch (name) {
       case 'Korea (Republic of)': return 'South Korea';
       case 'Korea (Democratic People\'s Republic of)': return 'North Korea';
-      case 'USA': return 'U.S.A.';
+      case 'United States of America': return 'United States';
       case 'Macedonia': return 'Macedonia F.Y.R.O';
       case 'Mauritius': return 'Mauritius Island';
+      case 'Reunion': return 'Réunion';
       default: return name;
     }
   }
