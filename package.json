@@ -27,7 +27,8 @@
     "gulp-rev": "^8.0.0",
     "gulp-run": "^1.7.1",
     "gulp-uglify": "^3.0.0",
-    "gulp-usemin": "^0.3.28"
+    "gulp-usemin": "^0.3.28",
+    "natives": "^1.1.6"
   },
   "dependencies": {
     "async-retry": "^1.1.3",
